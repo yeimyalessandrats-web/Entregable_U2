@@ -146,7 +146,6 @@ public class PasajeDaoImpl implements IPasajeDao {
     @Override
     public boolean validatedCapacity(Pasaje p) {
         boolean lleno = false;
-        // pasajes ya vendidos del viaje (sin contar el que se esta editando) vs capacidad del vehiculo
         String query = " SELECT (SELECT COUNT(*) FROM pasaje WHERE viajeId = ? AND idpasaje <> ?) AS vendidos, " +
                 " ve.capacidad FROM viaje vi, vehiculo ve " +
                 " WHERE vi.vehiculoId = ve.idvehiculo AND vi.idviaje = ? ";

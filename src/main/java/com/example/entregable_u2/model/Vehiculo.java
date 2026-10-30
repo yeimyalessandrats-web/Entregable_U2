@@ -65,8 +65,6 @@ public class Vehiculo {
     public final IntegerProperty capacidadProperty() {
         return capacidad;
     }
-
-    // Texto que se muestra en los ComboBox
     @Override
     public String toString() {
         return getDescripcion() + " " + getMarca() + " (" + getCapacidad() + " personas)";

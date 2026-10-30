@@ -129,8 +129,6 @@ public class TestPasajero {
         t.searchByDni();
         System.out.println("***** LISTAR *****");
         t.listar();
-        // El registro de prueba se elimina al final para no dejar datos de prueba.
-        // Si quieres conservarlo, comenta las dos lineas siguientes.
         System.out.println("***** ELIMINAR *****");
         t.delete();
         t.searchByDni();

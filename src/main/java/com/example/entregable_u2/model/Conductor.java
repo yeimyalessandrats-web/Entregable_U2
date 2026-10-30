@@ -41,7 +41,6 @@ public class Conductor extends Persona {
         return categoriaLicencia;
     }
 
-    // Texto que se muestra en los ComboBox
     @Override
     public String toString() {
         return getNombres() + " " + getApellidos() + " - " + getDni();

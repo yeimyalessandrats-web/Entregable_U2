@@ -58,7 +58,6 @@ public class PasajeController {
             }
         });
 
-        //llenar las columnas
         ColId.setCellValueFactory(
                 cellData -> cellData.getValue().idpasajeProperty().asObject());
         ColPasajero.setCellValueFactory(
@@ -73,7 +72,7 @@ public class PasajeController {
                 cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getViaje().getFechaSalida()));
         ColCosto.setCellValueFactory(
                 cellData -> cellData.getValue().costoProperty().asObject());
-        //cargar datos iniciales
+
         cargarDatos();
     }
 

@@ -69,7 +69,6 @@ public class ConductorDaoImpl implements IConductorDao {
             st.executeUpdate();
             flag = true;
         } catch (SQLException e) {
-            // falla, por ejemplo, si el conductor ya tiene viajes registrados
             System.out.println("Error al eliminar conductor" + e.getMessage());
         }
         return flag;

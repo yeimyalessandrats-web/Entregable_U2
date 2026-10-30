@@ -26,7 +26,6 @@ public class ViajeFormController {
     @FXML
     private DatePicker dpSalida, dpLlegada;
 
-    // El viaje llama al conductor y al vehiculo
     @FXML
     private ComboBox<Conductor> cbConductor;
     @FXML

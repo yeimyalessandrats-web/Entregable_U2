@@ -18,8 +18,6 @@ public class PasajeFormController {
 
     @FXML
     private Label lblTitulo;
-
-    // El pasaje llama al pasajero y al viaje
     @FXML
     private ComboBox<Pasajero> cbPasajero;
     @FXML

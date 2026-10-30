@@ -59,7 +59,6 @@ public class PasajeroController {
             }
         });
 
-        //llenar las columnas
         ColId.setCellValueFactory(
                 cellData -> cellData.getValue().idpasajeroProperty().asObject());
         ColNombres.setCellValueFactory(
@@ -76,7 +75,7 @@ public class PasajeroController {
                 cellData -> cellData.getValue().direccionProperty());
         ColFechaNac.setCellValueFactory(
                 cellData -> cellData.getValue().fechaNacimientoProperty());
-        //cargar datos iniciales
+
         cargarDatos();
     }
 

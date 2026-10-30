@@ -107,7 +107,6 @@ public class Viaje {
         return vehiculo;
     }
 
-    // Texto que se muestra en los ComboBox
     @Override
     public String toString() {
         return getLugarOrigen() + " -> " + getLugarDestino() + " (" + getFechaSalida() + ")";

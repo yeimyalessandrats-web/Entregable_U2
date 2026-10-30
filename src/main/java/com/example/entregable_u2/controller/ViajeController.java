@@ -60,7 +60,7 @@ public class ViajeController {
             }
         });
 
-        //llenar las columnas
+
         ColId.setCellValueFactory(
                 cellData -> cellData.getValue().idviajeProperty().asObject());
         ColOrigen.setCellValueFactory(
@@ -77,7 +77,7 @@ public class ViajeController {
                 cellData -> new SimpleStringProperty(cellData.getValue().getVehiculo().getDescripcion() + " " + cellData.getValue().getVehiculo().getMarca()));
         ColCapacidad.setCellValueFactory(
                 cellData -> new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getVehiculo().getCapacidad()).asObject());
-        //cargar datos iniciales
+
         cargarDatos();
     }
 

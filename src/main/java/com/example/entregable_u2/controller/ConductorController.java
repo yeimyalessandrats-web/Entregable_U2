@@ -55,8 +55,6 @@ public class ConductorController {
                 }
             }
         });
-
-        //llenar las columnas
         ColId.setCellValueFactory(
                 cellData -> cellData.getValue().idconductorProperty().asObject());
         ColNombres.setCellValueFactory(
@@ -71,7 +69,6 @@ public class ConductorController {
                 cellData -> cellData.getValue().telefonoProperty());
         ColCategoria.setCellValueFactory(
                 cellData -> cellData.getValue().categoriaLicenciaProperty());
-        //cargar datos iniciales
         cargarDatos();
     }
 

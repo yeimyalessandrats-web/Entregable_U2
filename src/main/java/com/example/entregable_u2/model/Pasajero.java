@@ -54,7 +54,6 @@ public class Pasajero extends Persona {
         return fechaNacimiento;
     }
 
-    // Texto que se muestra en los ComboBox
     @Override
     public String toString() {
         return getNombres() + " " + getApellidos() + " - " + getDni();
