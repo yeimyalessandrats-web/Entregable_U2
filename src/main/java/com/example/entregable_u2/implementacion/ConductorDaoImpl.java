@@ -13,18 +13,6 @@ import java.util.List;
 
 public class ConductorDaoImpl implements IConductorDao {
 
-    private Conductor mapear(ResultSet rs) throws SQLException {
-        Conductor c = new Conductor();
-        c.setIdconductor(rs.getInt("idconductor"));
-        c.setNombres(rs.getString("nombres"));
-        c.setApellidos(rs.getString("apellidos"));
-        c.setDni(rs.getString("dni"));
-        c.setEdad(rs.getInt("edad"));
-        c.setTelefono(rs.getString("telefono"));
-        c.setCategoriaLicencia(rs.getString("categoriaLicencia"));
-        return c;
-    }
-
     @Override
     public boolean insert(Conductor c) {
         boolean flag = false;
@@ -96,7 +84,14 @@ public class ConductorDaoImpl implements IConductorDao {
             st.setInt(1, id);
             try (ResultSet rs = st.executeQuery()) {
                 if (rs.next()) {
-                    c = mapear(rs);
+                    c = new Conductor();
+                    c.setIdconductor(rs.getInt("idconductor"));
+                    c.setNombres(rs.getString("nombres"));
+                    c.setApellidos(rs.getString("apellidos"));
+                    c.setDni(rs.getString("dni"));
+                    c.setEdad(rs.getInt("edad"));
+                    c.setTelefono(rs.getString("telefono"));
+                    c.setCategoriaLicencia(rs.getString("categoriaLicencia"));
                 }
             }
         } catch (SQLException e) {
@@ -114,7 +109,14 @@ public class ConductorDaoImpl implements IConductorDao {
             st.setString(1, dni);
             try (ResultSet rs = st.executeQuery()) {
                 if (rs.next()) {
-                    c = mapear(rs);
+                    c = new Conductor();
+                    c.setIdconductor(rs.getInt("idconductor"));
+                    c.setNombres(rs.getString("nombres"));
+                    c.setApellidos(rs.getString("apellidos"));
+                    c.setDni(rs.getString("dni"));
+                    c.setEdad(rs.getInt("edad"));
+                    c.setTelefono(rs.getString("telefono"));
+                    c.setCategoriaLicencia(rs.getString("categoriaLicencia"));
                 }
             }
         } catch (SQLException e) {
@@ -132,7 +134,15 @@ public class ConductorDaoImpl implements IConductorDao {
              ResultSet rs = st.executeQuery();
         ) {
             while (rs.next()) {
-                lista.add(mapear(rs));
+                Conductor c = new Conductor();
+                c.setIdconductor(rs.getInt("idconductor"));
+                c.setNombres(rs.getString("nombres"));
+                c.setApellidos(rs.getString("apellidos"));
+                c.setDni(rs.getString("dni"));
+                c.setEdad(rs.getInt("edad"));
+                c.setTelefono(rs.getString("telefono"));
+                c.setCategoriaLicencia(rs.getString("categoriaLicencia"));
+                lista.add(c);
             }
         } catch (SQLException e) {
             System.out.println("Error al listar conductores" + e.getMessage());

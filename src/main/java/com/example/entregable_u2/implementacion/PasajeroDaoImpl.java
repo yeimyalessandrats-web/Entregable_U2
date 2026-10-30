@@ -13,22 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 public class PasajeroDaoImpl implements IPasajeroDao {
 
-    private Pasajero mapear(ResultSet rs) throws SQLException {
-        Pasajero p = new Pasajero();
-        p.setIdpasajero(rs.getInt("idpasajero"));
-        p.setNombres(rs.getString("nombres"));
-        p.setApellidos(rs.getString("apellidos"));
-        p.setDni(rs.getString("dni"));
-        p.setEdad(rs.getInt("edad"));
-        p.setTelefono(rs.getString("telefono"));
-        p.setDireccion(rs.getString("direccion"));
-        String fecha = rs.getString("fechaNacimiento");
-        if (fecha != null && !fecha.isBlank()) {
-            p.setFechaNacimiento(LocalDate.parse(fecha));
-        }
-        return p;
-    }
-
     @Override
     public boolean insert(Pasajero p) {
         boolean flag = false;
@@ -102,7 +86,18 @@ public class PasajeroDaoImpl implements IPasajeroDao {
             st.setInt(1, id);
             try (ResultSet rs = st.executeQuery()) {
                 if (rs.next()) {
-                    p = mapear(rs);
+                    p = new Pasajero();
+                    p.setIdpasajero(rs.getInt("idpasajero"));
+                    p.setNombres(rs.getString("nombres"));
+                    p.setApellidos(rs.getString("apellidos"));
+                    p.setDni(rs.getString("dni"));
+                    p.setEdad(rs.getInt("edad"));
+                    p.setTelefono(rs.getString("telefono"));
+                    p.setDireccion(rs.getString("direccion"));
+                    String fecha = rs.getString("fechaNacimiento");
+                    if (fecha != null && !fecha.isBlank()) {
+                        p.setFechaNacimiento(LocalDate.parse(fecha));
+                    }
                 }
             }
         } catch (SQLException e) {
@@ -120,7 +115,18 @@ public class PasajeroDaoImpl implements IPasajeroDao {
             st.setString(1, dni);
             try (ResultSet rs = st.executeQuery()) {
                 if (rs.next()) {
-                    p = mapear(rs);
+                    p = new Pasajero();
+                    p.setIdpasajero(rs.getInt("idpasajero"));
+                    p.setNombres(rs.getString("nombres"));
+                    p.setApellidos(rs.getString("apellidos"));
+                    p.setDni(rs.getString("dni"));
+                    p.setEdad(rs.getInt("edad"));
+                    p.setTelefono(rs.getString("telefono"));
+                    p.setDireccion(rs.getString("direccion"));
+                    String fecha = rs.getString("fechaNacimiento");
+                    if (fecha != null && !fecha.isBlank()) {
+                        p.setFechaNacimiento(LocalDate.parse(fecha));
+                    }
                 }
             }
         } catch (SQLException e) {
@@ -138,7 +144,19 @@ public class PasajeroDaoImpl implements IPasajeroDao {
              ResultSet rs = st.executeQuery();
         ) {
             while (rs.next()) {
-                lista.add(mapear(rs));
+                Pasajero p = new Pasajero();
+                p.setIdpasajero(rs.getInt("idpasajero"));
+                p.setNombres(rs.getString("nombres"));
+                p.setApellidos(rs.getString("apellidos"));
+                p.setDni(rs.getString("dni"));
+                p.setEdad(rs.getInt("edad"));
+                p.setTelefono(rs.getString("telefono"));
+                p.setDireccion(rs.getString("direccion"));
+                String fecha = rs.getString("fechaNacimiento");
+                if (fecha != null && !fecha.isBlank()) {
+                    p.setFechaNacimiento(LocalDate.parse(fecha));
+                }
+                lista.add(p);
             }
         } catch (SQLException e) {
             System.out.println("Error al listar pasajeros" + e.getMessage());

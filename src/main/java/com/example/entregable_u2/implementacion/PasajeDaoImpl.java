@@ -16,37 +16,6 @@ import java.util.List;
 
 public class PasajeDaoImpl implements IPasajeDao {
 
-    // El pasaje llama al pasajero y al viaje
-    private static final String SELECT_BASE =
-            " SELECT p.*, pa.nombres AS pa_nombres, pa.apellidos AS pa_apellidos, pa.dni AS pa_dni, " +
-                    " vi.lugarOrigen, vi.lugarDestino, vi.fecha_salida, vi.fecha_llegada " +
-                    " FROM pasaje p, pasajero pa, viaje vi " +
-                    " WHERE p.pasajeroId = pa.idpasajero " +
-                    " AND p.viajeId = vi.idviaje ";
-
-    private Pasaje mapear(ResultSet rs) throws SQLException {
-        Pasajero pa = new Pasajero();
-        Viaje vi = new Viaje();
-        Pasaje p = new Pasaje();
-
-        pa.setIdpasajero(rs.getInt("pasajeroId"));
-        pa.setNombres(rs.getString("pa_nombres"));
-        pa.setApellidos(rs.getString("pa_apellidos"));
-        pa.setDni(rs.getString("pa_dni"));
-
-        vi.setIdviaje(rs.getInt("viajeId"));
-        vi.setLugarOrigen(rs.getString("lugarOrigen"));
-        vi.setLugarDestino(rs.getString("lugarDestino"));
-        vi.setFechaSalida(LocalDate.parse(rs.getString("fecha_salida")));
-        vi.setFechaLlegada(LocalDate.parse(rs.getString("fecha_llegada")));
-
-        p.setIdpasaje(rs.getInt("idpasaje"));
-        p.setCosto(rs.getDouble("costo"));
-        p.setPasajero(pa);
-        p.setViaje(vi);
-        return p;
-    }
-
     @Override
     public boolean insert(Pasaje p) {
         boolean flag = false;
@@ -100,13 +69,34 @@ public class PasajeDaoImpl implements IPasajeDao {
     @Override
     public Pasaje searchById(int id) {
         Pasaje p = null;
-        String query = SELECT_BASE + " AND p.idpasaje = ? ";
+        // El pasaje llama al pasajero y al viaje
+        String query = " SELECT p.*, pa.nombres AS pa_nombres, pa.apellidos AS pa_apellidos, pa.dni AS pa_dni, " +
+                " vi.lugarOrigen, vi.lugarDestino, vi.fecha_salida, vi.fecha_llegada " +
+                " FROM pasaje p, pasajero pa, viaje vi " +
+                " WHERE p.pasajeroId = pa.idpasajero " +
+                " AND p.viajeId = vi.idviaje " +
+                " AND p.idpasaje = ? ";
         try (Connection cn = ConexionBD.getConnection();
              PreparedStatement st = cn.prepareStatement(query)) {
             st.setInt(1, id);
             try (ResultSet rs = st.executeQuery()) {
                 if (rs.next()) {
-                    p = mapear(rs);
+                    Pasajero pa = new Pasajero();
+                    Viaje vi = new Viaje();
+                    p = new Pasaje();
+                    pa.setIdpasajero(rs.getInt("pasajeroId"));
+                    pa.setNombres(rs.getString("pa_nombres"));
+                    pa.setApellidos(rs.getString("pa_apellidos"));
+                    pa.setDni(rs.getString("pa_dni"));
+                    vi.setIdviaje(rs.getInt("viajeId"));
+                    vi.setLugarOrigen(rs.getString("lugarOrigen"));
+                    vi.setLugarDestino(rs.getString("lugarDestino"));
+                    vi.setFechaSalida(LocalDate.parse(rs.getString("fecha_salida")));
+                    vi.setFechaLlegada(LocalDate.parse(rs.getString("fecha_llegada")));
+                    p.setIdpasaje(rs.getInt("idpasaje"));
+                    p.setCosto(rs.getDouble("costo"));
+                    p.setPasajero(pa);
+                    p.setViaje(vi);
                 }
             }
         } catch (SQLException e) {
@@ -118,12 +108,34 @@ public class PasajeDaoImpl implements IPasajeDao {
     @Override
     public List<Pasaje> listAll() {
         List<Pasaje> lista = new ArrayList<>();
+        // El pasaje llama al pasajero y al viaje
+        String query = " SELECT p.*, pa.nombres AS pa_nombres, pa.apellidos AS pa_apellidos, pa.dni AS pa_dni, " +
+                " vi.lugarOrigen, vi.lugarDestino, vi.fecha_salida, vi.fecha_llegada " +
+                " FROM pasaje p, pasajero pa, viaje vi " +
+                " WHERE p.pasajeroId = pa.idpasajero " +
+                " AND p.viajeId = vi.idviaje ";
         try (Connection cn = ConexionBD.getConnection();
-             PreparedStatement st = cn.prepareStatement(SELECT_BASE);
+             PreparedStatement st = cn.prepareStatement(query);
              ResultSet rs = st.executeQuery();
         ) {
             while (rs.next()) {
-                lista.add(mapear(rs));
+                Pasajero pa = new Pasajero();
+                Viaje vi = new Viaje();
+                Pasaje p = new Pasaje();
+                pa.setIdpasajero(rs.getInt("pasajeroId"));
+                pa.setNombres(rs.getString("pa_nombres"));
+                pa.setApellidos(rs.getString("pa_apellidos"));
+                pa.setDni(rs.getString("pa_dni"));
+                vi.setIdviaje(rs.getInt("viajeId"));
+                vi.setLugarOrigen(rs.getString("lugarOrigen"));
+                vi.setLugarDestino(rs.getString("lugarDestino"));
+                vi.setFechaSalida(LocalDate.parse(rs.getString("fecha_salida")));
+                vi.setFechaLlegada(LocalDate.parse(rs.getString("fecha_llegada")));
+                p.setIdpasaje(rs.getInt("idpasaje"));
+                p.setCosto(rs.getDouble("costo"));
+                p.setPasajero(pa);
+                p.setViaje(vi);
+                lista.add(p);
             }
         } catch (SQLException e) {
             System.out.println("Error al listar pasaje" + e.getMessage());

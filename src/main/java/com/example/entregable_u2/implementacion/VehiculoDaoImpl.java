@@ -13,15 +13,6 @@ import java.util.List;
 
 public class VehiculoDaoImpl implements IVehiculoDao {
 
-    private Vehiculo mapear(ResultSet rs) throws SQLException {
-        Vehiculo v = new Vehiculo();
-        v.setIdvehiculo(rs.getInt("idvehiculo"));
-        v.setDescripcion(rs.getString("descripcion"));
-        v.setMarca(rs.getString("marca"));
-        v.setCapacidad(rs.getInt("capacidad"));
-        return v;
-    }
-
     @Override
     public boolean insert(Vehiculo v) {
         boolean flag = false;
@@ -82,7 +73,11 @@ public class VehiculoDaoImpl implements IVehiculoDao {
             st.setInt(1, id);
             try (ResultSet rs = st.executeQuery()) {
                 if (rs.next()) {
-                    v = mapear(rs);
+                    v = new Vehiculo();
+                    v.setIdvehiculo(rs.getInt("idvehiculo"));
+                    v.setDescripcion(rs.getString("descripcion"));
+                    v.setMarca(rs.getString("marca"));
+                    v.setCapacidad(rs.getInt("capacidad"));
                 }
             }
         } catch (SQLException e) {
@@ -100,7 +95,12 @@ public class VehiculoDaoImpl implements IVehiculoDao {
              ResultSet rs = st.executeQuery();
         ) {
             while (rs.next()) {
-                lista.add(mapear(rs));
+                Vehiculo v = new Vehiculo();
+                v.setIdvehiculo(rs.getInt("idvehiculo"));
+                v.setDescripcion(rs.getString("descripcion"));
+                v.setMarca(rs.getString("marca"));
+                v.setCapacidad(rs.getInt("capacidad"));
+                lista.add(v);
             }
         } catch (SQLException e) {
             System.out.println("Error al listar vehiculo:" + e.getMessage());
